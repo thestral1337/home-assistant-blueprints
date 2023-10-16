@@ -29,6 +29,12 @@ blueprint:
       default: []
       selector:
         action: {}
+    release:
+      name: Release
+      description: Action to run when button is released
+      default: []
+      selector:
+        action: {}
 mode: parallel
 max_exceeded: silent
 trigger:
@@ -49,3 +55,6 @@ action:
       - conditions:
           - "{{ command == 'hold' }}"
         sequence: !input "hold"
+      - conditions:
+          - "{{ command == 'release' }}"
+        sequence: !input "release"
