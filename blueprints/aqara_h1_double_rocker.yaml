@@ -88,8 +88,6 @@ max_exceeded: silent
 trigger:
   - platform: state
     entity_id: !input "button_sensor"
-    from: null
-    to: null
 action:
   - variables:
       command: "{{ trigger.to_state.state }}"
