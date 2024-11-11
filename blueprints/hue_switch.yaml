@@ -1,0 +1,110 @@
+blueprint:
+  name: Controller - Hue switch
+  description: Customizable Controller Automation Blueprint for Hue Switches in Zigbee2MQTT
+  domain: automation
+
+  input:
+    controller:
+      name: (Zigbee2MQTT) Controller Name
+      description: The name of the switch in Zigbee2MQTT (Not the name of your Home-Assistant Entity)
+      default: ""
+
+    #Actions
+    on_press_release:
+      description: Action set to run when the On button is pressed and released.
+      default: []
+      selector:
+        action: {}
+    on_hold:
+      description: Action set to run when the On button is held.
+      default: []
+      selector:
+        action: {}
+    on_hold_release:
+      description: Action set to run when the On button is held and released.
+      default: []
+      selector:
+        action: {}
+    up_press_release:
+      description: Action set to run when the Up button is pressed and released.
+      default: []
+      selector:
+        action: {}
+    up_hold:
+      description: Action set to run when the Up button is held.
+      default: []
+      selector:
+        action: {}
+    up_hold_release:
+      description: Action set to run when the Up button is held and released.
+      default: []
+      selector:
+        action: {}
+    down_press_release:
+      description: Action set to run when the Down button is pressed and released.
+      default: []
+      selector:
+        action: {}
+    down_hold:
+      description: Action set to run when the Down button is held.
+      default: []
+      selector:
+        action: {}
+    down_hold_release:
+      description: Action set to run when the Down button is held and released.
+      default: []
+      selector:
+        action: {}
+    off_press_release:
+      description: Action set to run when the Off button is pressed and released.
+      default: []
+      selector:
+        action: {}
+    off_hold:
+      description: Action set to run when the Off button is held.
+      default: []
+      selector:
+        action: {}
+    off_hold_release:
+      description: Action set to run when the Off button is held and released.
+      default: []
+      selector:
+        action: {}
+
+mode: parallel
+max: 5
+trigger_variables:
+  controller: !input controller
+trigger:
+  - platform: mqtt
+    topic: "{{ 'zigbee2mqtt/' ~ controller }}"
+condition:
+  - "{{ trigger.payload_json.action not in [null, 'unknown', ''] }}"
+action:
+  - variables:
+      controller: !input controller
+  - choose:
+    - conditions: '{{ trigger.payload_json.action == "on_press_release" }}'
+      sequence: !input on_press_release
+    - conditions: '{{ trigger.payload_json.action == "on_hold" }}'
+      sequence: !input on_hold
+    - conditions: '{{ trigger.payload_json.action == "on_hold_release" }}'
+      sequence: !input on_hold_release
+    - conditions: '{{ trigger.payload_json.action == "up_press_release" }}'
+      sequence: !input up_press_release
+    - conditions: '{{ trigger.payload_json.action == "up_hold" }}'
+      sequence: !input up_hold
+    - conditions: '{{ trigger.payload_json.action == "up_hold_release" }}'
+      sequence: !input up_hold_release
+    - conditions: '{{ trigger.payload_json.action == "down_press_release" }}'
+      sequence: !input down_press_release
+    - conditions: '{{ trigger.payload_json.action == "down_hold" }}'
+      sequence: !input down_hold
+    - conditions: '{{ trigger.payload_json.action == "down_hold_release" }}'
+      sequence: !input down_hold_release
+    - conditions: '{{ trigger.payload_json.action == "off_press_release" }}'
+      sequence: !input off_press_release
+    - conditions: '{{ trigger.payload_json.action == "off_hold" }}'
+      sequence: !input off_hold
+    - conditions: '{{ trigger.payload_json.action == "off_hold_release" }}'
+      sequence: !input off_hold_release
