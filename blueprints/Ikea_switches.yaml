@@ -90,27 +90,25 @@ action:
   - variables:
       controller: !input controller
   - choose:
-      - sequence:
-          - choose:
-              - conditions: '{{ trigger.payload_json.action == "on" }}'
-                sequence: !input 'on'
-              - conditions: '{{ trigger.payload_json.action == "off" }}'
-                sequence: !input 'off'
-              - conditions: '{{ trigger.payload_json.action == "brightness_move_up" }}'
-                sequence: !input brightness_move_up
-              - conditions: '{{ trigger.payload_json.action == "brightness_stop" }}'
-                sequence: !input brightness_stop
-              - conditions: '{{ trigger.payload_json.action == "brightness_move_down" }}'
-                sequence: !input brightness_move_down
-              - conditions: '{{ trigger.payload_json.action == "arrow_left_click" }}'
-                sequence: !input arrow_left_click
-              - conditions: '{{ trigger.payload_json.action == "arrow_right_click" }}'
-                sequence: !input arrow_right_click
-              - conditions: '{{ trigger.payload_json.action == "arrow_left_hold" }}'
-                sequence: !input arrow_left_hold
-              - conditions: '{{ trigger.payload_json.action == "arrow_right_hold" }}'
-                sequence: !input arrow_right_hold
-              - conditions: '{{ trigger.payload_json.action == "arrow_left_release" }}'
-                sequence: !input arrow_left_release
-              - conditions: '{{ trigger.payload_json.action == "arrow_right_release" }}'
-                sequence: !input arrow_right_release
+      - conditions: '{{ trigger.payload_json.action == "on" }}'
+        sequence: !input 'on'
+      - conditions: '{{ trigger.payload_json.action == "off" }}'
+        sequence: !input 'off'
+      - conditions: '{{ trigger.payload_json.action == "brightness_move_up" }}'
+        sequence: !input brightness_move_up
+      - conditions: '{{ trigger.payload_json.action == "brightness_stop" }}'
+        sequence: !input brightness_stop
+      - conditions: '{{ trigger.payload_json.action == "brightness_move_down" }}'
+        sequence: !input brightness_move_down
+      - conditions: '{{ trigger.payload_json.action == "arrow_left_click" }}'
+        sequence: !input arrow_left_click
+      - conditions: '{{ trigger.payload_json.action == "arrow_right_click" }}'
+        sequence: !input arrow_right_click
+      - conditions: '{{ trigger.payload_json.action == "arrow_left_hold" }}'
+        sequence: !input arrow_left_hold
+      - conditions: '{{ trigger.payload_json.action == "arrow_right_hold" }}'
+        sequence: !input arrow_right_hold
+      - conditions: '{{ trigger.payload_json.action == "arrow_left_release" }}'
+        sequence: !input arrow_left_release
+      - conditions: '{{ trigger.payload_json.action == "arrow_right_release" }}'
+        sequence: !input arrow_right_release
