@@ -90,13 +90,12 @@ action:
   - variables:
       controller: !input controller
   - choose:
-      - conditions: "{{ trigger.payload_json.action is not none }}"
-        sequence:
+      - sequence:
           - choose:
               - conditions: '{{ trigger.payload_json.action == "on" }}'
-                sequence: !input on
+                sequence: !input 'on'
               - conditions: '{{ trigger.payload_json.action == "off" }}'
-                sequence: !input off
+                sequence: !input 'off'
               - conditions: '{{ trigger.payload_json.action == "brightness_move_up" }}'
                 sequence: !input brightness_move_up
               - conditions: '{{ trigger.payload_json.action == "brightness_stop" }}'
