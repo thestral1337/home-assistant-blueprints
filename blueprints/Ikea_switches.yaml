@@ -90,7 +90,8 @@ action:
   - variables:
       controller: !input controller
   - choose:
-      - sequence:
+      - conditions: "{{ trigger.payload_json.action is not none }}"
+        sequence:
           - choose:
               - conditions: '{{ trigger.payload_json.action == "on" }}'
                 sequence: !input on
