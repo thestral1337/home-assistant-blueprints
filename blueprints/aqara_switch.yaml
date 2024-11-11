@@ -30,26 +30,6 @@ blueprint:
       default: []
       selector:
         action: {}
-    single_right:
-      description: Action set to run when the Single Right button is pressed.
-      default: []
-      selector:
-        action: {}
-    double_right:
-      description: Action set to run when the Double Right button is pressed.
-      default: []
-      selector:
-        action: {}
-    triple_right:
-      description: Action set to run when the Triple Right button is pressed.
-      default: []
-      selector:
-        action: {}
-    hold_right:
-      description: Action set to run when the Hold Right button is pressed.
-      default: []
-      selector:
-        action: {}
     single_left:
       description: Action set to run when the Single Left button is pressed.
       default: []
@@ -67,6 +47,26 @@ blueprint:
         action: {}
     hold_left:
       description: Action set to run when the Hold Left button is pressed.
+      default: []
+      selector:
+        action: {}
+    single_right:
+      description: Action set to run when the Single Right button is pressed.
+      default: []
+      selector:
+        action: {}
+    double_right:
+      description: Action set to run when the Double Right button is pressed.
+      default: []
+      selector:
+        action: {}
+    triple_right:
+      description: Action set to run when the Triple Right button is pressed.
+      default: []
+      selector:
+        action: {}
+    hold_right:
+      description: Action set to run when the Hold Right button is pressed.
       default: []
       selector:
         action: {}
@@ -112,14 +112,6 @@ action:
       sequence: !input hold
     - conditions: '{{ trigger.payload_json.action == "release" }}'
       sequence: !input release
-    - conditions: '{{ trigger.payload_json.action == "single_right" }}'
-      sequence: !input single_right
-    - conditions: '{{ trigger.payload_json.action == "double_right" }}'
-      sequence: !input double_right
-    - conditions: '{{ trigger.payload_json.action == "triple_right" }}'
-      sequence: !input triple_right
-    - conditions: '{{ trigger.payload_json.action == "hold_right" }}'
-      sequence: !input hold_right
     - conditions: '{{ trigger.payload_json.action == "single_left" }}'
       sequence: !input single_left
     - conditions: '{{ trigger.payload_json.action == "double_left" }}'
@@ -128,6 +120,14 @@ action:
       sequence: !input triple_left
     - conditions: '{{ trigger.payload_json.action == "hold_left" }}'
       sequence: !input hold_left
+    - conditions: '{{ trigger.payload_json.action == "single_right" }}'
+      sequence: !input single_right
+    - conditions: '{{ trigger.payload_json.action == "double_right" }}'
+      sequence: !input double_right
+    - conditions: '{{ trigger.payload_json.action == "triple_right" }}'
+      sequence: !input triple_right
+    - conditions: '{{ trigger.payload_json.action == "hold_right" }}'
+      sequence: !input hold_right
     - conditions: '{{ trigger.payload_json.action == "single_both" }}'
       sequence: !input single_both
     - conditions: '{{ trigger.payload_json.action == "double_both" }}'
