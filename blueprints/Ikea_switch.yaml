@@ -1,6 +1,6 @@
 blueprint:
-  name: Customizable Controller Automation Blueprint for Ikea Switchs in Zigbee2MQTT
-  description: Customizable Controller Automation Blueprint for Ikea Switchs in Zigbee2MQTT
+  name: Customizable Controller Automation Blueprint for Ikea Switches in Zigbee2MQTT
+  description: Customizable Controller Automation Blueprint for Ikea Switches in Zigbee2MQTT
   domain: automation
 
   input:
