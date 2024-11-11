@@ -1,0 +1,116 @@
+blueprint:
+  name: Customizable Controller Automation Blueprint for Ikea Switchs in Zigbee2MQTT
+  description: Generic controller automation for Ikea switches in Zigbee2MQTT
+  domain: automation
+
+  input:
+    controller:
+      name: (Zigbee2MQTT) Controller Name
+      description: The name of the switch in Zigbee2MQTT (Not the name of your Home-Assistant Entity)
+      default: ""
+
+    #Actions
+    on:
+      name: On
+      description: Action set to run when the On button is pressed.
+      default: []
+      selector:
+        action: {}
+    off:
+      name: Off
+      description: Action set to run when the Off button is pressed.
+      default: []
+      selector:
+        action: {}
+    brightness_move_up:
+      name: Brightness Move Up
+      description: Action set to run when brightness move up is triggered.
+      default: []
+      selector:
+        action: {}
+    brightness_stop:
+      name: Brightness Stop
+      description: Action set to run when brightness stop is triggered.
+      default: []
+      selector:
+        action: {}
+    brightness_move_down:
+      name: Brightness Move Down
+      description: Action set to run when brightness move down is triggered.
+      default: []
+      selector:
+        action: {}
+    arrow_left_click:
+      name: Arrow Left Click
+      description: Action set to run when the left arrow is clicked.
+      default: []
+      selector:
+        action: {}
+    arrow_right_click:
+      name: Arrow Right Click
+      description: Action set to run when the right arrow is clicked.
+      default: []
+      selector:
+        action: {}
+    arrow_left_hold:
+      name: Arrow Left Hold
+      description: Action set to run when the left arrow is held.
+      default: []
+      selector:
+        action: {}
+    arrow_right_hold:
+      name: Arrow Right Hold
+      description: Action set to run when the right arrow is held.
+      default: []
+      selector:
+        action: {}
+    arrow_left_release:
+      name: Arrow Left Release
+      description: Action set to run when the left arrow is released.
+      default: []
+      selector:
+        action: {}
+    arrow_right_release:
+      name: Arrow Right Release
+      description: Action set to run when the right arrow is released.
+      default: []
+      selector:
+        action: {}
+
+mode: parallel
+max: 5
+trigger_variables:
+  controller: !input controller
+trigger:
+  - platform: mqtt
+    topic: "{{ 'zigbee2mqtt' ~ '/' ~ controller }}"
+condition:
+  - "{{ trigger.payload_json.action is not none }}"
+action:
+  - variables:
+      controller: !input controller
+  - choose:
+      - sequence:
+          - choose:
+              - conditions: '{{ trigger.payload_json.action == "on" }}'
+                sequence: !input on
+              - conditions: '{{ trigger.payload_json.action == "off" }}'
+                sequence: !input off
+              - conditions: '{{ trigger.payload_json.action == "brightness_move_up" }}'
+                sequence: !input brightness_move_up
+              - conditions: '{{ trigger.payload_json.action == "brightness_stop" }}'
+                sequence: !input brightness_stop
+              - conditions: '{{ trigger.payload_json.action == "brightness_move_down" }}'
+                sequence: !input brightness_move_down
+              - conditions: '{{ trigger.payload_json.action == "arrow_left_click" }}'
+                sequence: !input arrow_left_click
+              - conditions: '{{ trigger.payload_json.action == "arrow_right_click" }}'
+                sequence: !input arrow_right_click
+              - conditions: '{{ trigger.payload_json.action == "arrow_left_hold" }}'
+                sequence: !input arrow_left_hold
+              - conditions: '{{ trigger.payload_json.action == "arrow_right_hold" }}'
+                sequence: !input arrow_right_hold
+              - conditions: '{{ trigger.payload_json.action == "arrow_left_release" }}'
+                sequence: !input arrow_left_release
+              - conditions: '{{ trigger.payload_json.action == "arrow_right_release" }}'
+                sequence: !input arrow_right_release
