@@ -1,5 +1,5 @@
 blueprint:
-  name: Customizable Controller Automation Blueprint for Aqara Switches in Zigbee2MQTT
+  name: Controller - Aqara switch
   description: Customizable Controller Automation Blueprint for Aqara Switches in Zigbee2MQTT
   domain: automation
 
