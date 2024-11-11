@@ -10,13 +10,13 @@ blueprint:
       default: ""
 
     #Actions
-    on:
+    "on":
       name: "On"
       description: Action set to run when the On button is pressed.
       default: []
       selector:
         action: {}
-    off:
+    "off":
       name: "Off"
       description: Action set to run when the Off button is pressed.
       default: []
