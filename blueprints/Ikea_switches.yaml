@@ -85,7 +85,7 @@ trigger:
   - platform: mqtt
     topic: "{{ 'zigbee2mqtt' ~ '/' ~ controller }}"
 condition:
-  - "{{ trigger.payload_json.action is not none }}"
+  - "{{ trigger.payload_json.action not in [null, '', 'unknown'] }}"
 action:
   - variables:
       controller: !input controller
